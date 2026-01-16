@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,8 +26,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-purple-50 via-purple-50 to-purple-100 dark:from-purple-950 dark:via-purple-900 dark:to-purple-800`}
       >
+        <h1 className="flex flex-col gap-[16px] row-start-2 items-center text-4xl font-bold text-center sm:text-left text-purple-900 dark:text-purple-100">
+          PokéBase
+        </h1>
+        
+        <div className="flex flex-row items-center justify-center py-2 gap-8">
+          <Link href="/pokemon">Pokemon</Link>
+          <Link href="/locations">Locations</Link>
+          <Link href="/moves">Moves</Link>
+          <Link href="/generations">Generations</Link>
+        </div>
         {children}
       </body>
     </html>
