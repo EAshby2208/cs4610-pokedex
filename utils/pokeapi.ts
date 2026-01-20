@@ -1,9 +1,11 @@
 const BASE_URL = "https://pokeapi.co/api/v2";
 
 export type PokemonList = {
-    count: number;
-    results: { name: string; url: string }[];
-}
+    results: { 
+        name: string;
+        url: string;
+    }[];
+};
 
 export type PokemonDetails = {
     name: string;
