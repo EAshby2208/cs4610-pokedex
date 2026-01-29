@@ -1,3 +1,4 @@
+// app/_components/seaerchable_pokemon_lists
 "use client";
 import { useState } from "react";
 import Link from "next/link";
