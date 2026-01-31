@@ -58,7 +58,7 @@ export default async function MovePage(props: Props) {
                 {/* (above code block) replace newlines and form feeds with space */}
           </ul>
           {/* Learned By Pokemon */}
-          <h2 className="text-2xl font-semibold mt-6 mb-4 text-purple-900 dark:text-purple-100">Learned By Pokemon</h2>
+          <h2 className="text-2xl font-semibold mt-6 mb-4 text-purple-900 dark:text-purple-100">Learned By Pokémon</h2>
           <SearchableList items={data.learned_by_pokemon} basePath="/pokemon"/>
       </div>
     </div>

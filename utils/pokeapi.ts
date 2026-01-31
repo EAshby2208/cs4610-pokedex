@@ -96,6 +96,9 @@ export async function fetchLocationList(){
 }
 export async function fetchLocationDetails(name: string) {
     const res = await fetch(`${BASE_URL}/location/${name}`);
+    if (!res.ok) {
+        throw new Error(`Failed to fetch location: ${name}`);
+    }
     const details = await res.json() as LocationDetails;
     return details;
 }

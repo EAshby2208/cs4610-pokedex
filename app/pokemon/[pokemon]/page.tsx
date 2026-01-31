@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { fetchPokemonDetails } from "@/utils/pokeapi";
 import BackButton from "@/app/_components/back_button";
+import SearchableList from "@/app/_components/searchable_list";
 
 type Props = {
   params: Promise< {pokemon: string}>;
@@ -22,7 +23,7 @@ export default async function PokemonPage(props: Props) {
       return area.location;
     })
   );
-  
+
   const formatStatName = (name: string) => {
     if (name === "hp") return "HP";
     if (name === "special-attack") return "Special Attack";
@@ -67,33 +68,17 @@ export default async function PokemonPage(props: Props) {
             </li>
           ))}
         </ul>
-        <h2 className="text-2xl font-semibold mt-6 mb-4">Locations</h2>
+        <h2 className="text-2xl font-semibold mt-6 mb-4">Encounter Locations</h2>
         {/* if no known locations, show message */}
         {/* else, list locations and if a location is selected, go to the page related to that location */}
         {locations.length === 0 ? (
           <p className="text-purple-600 dark:text-purple-400 italic">No known locations</p>
         ) : (
-          <ul className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-            {locations.map((loc) => (
-              <li key={loc.name} className="rounded-xl border border-purple-300 bg-purple-50 dark:bg-purple-900 p-4 text-center shadow-sm hover:shadow-md transition">
-                <Link href={`/locations/${loc.name}`} className="capitalize font-medium text-purple-700 dark:text-purple-300 hover:text-purple-900 dark:hover:text-purple-100">
-                  {formatLocationName(loc.name)}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <SearchableList items={locations.map((loc: any) => ({ name: formatLocationName(loc.name), url: loc.url }))} basePath="/locations"/>
         )}
         <h2 className="text-2xl font-semibold mt-6 mb-4">Moves</h2>
         {/* list moves and if select move, redirect to moves/{move} page */}
-        <ul className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          {data.moves.map((m) => (
-            <li key={m.move.name} className="rounded-xl border border-purple-300 bg-white dark:bg-purple-900 p-4 text-center shadow-sm hover:shadow-md transition">
-              <Link href={`/moves/${m.move.name}`} className="capitalize font-medium text-purple-700 dark:text-purple-300 hover:text-purple-900 dark:hover:text-purple-100">
-                {m.move.name.replace('-', ' ')}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <SearchableList items={data.moves.map((move) => ({ name: move.move.name, url: move.move.url }))} basePath="/moves"/>
     </div>
   );
 }
