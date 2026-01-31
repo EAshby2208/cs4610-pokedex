@@ -1,7 +1,7 @@
 
 ## Live Demo
 Deployed Application:
-
+https://cs4610-pokedex-beta.vercel.app/
 
 
 
