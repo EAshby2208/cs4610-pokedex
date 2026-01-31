@@ -30,16 +30,20 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-purple-50 via-purple-50 to-purple-100 dark:from-purple-950 dark:via-purple-900 dark:to-purple-800`}
       >
-        <h1 className="flex flex-col gap-[16px] row-start-2 items-center text-4xl font-bold text-center sm:text-left text-purple-900 dark:text-purple-100">
-          PokéBase
-        </h1>
-        
-        <div className="flex flex-row items-center justify-center py-2 gap-8">
-          <Link className="hover:text-purple-600" href="/pokemon">Pokemon</Link>
-          <Link className="hover:text-purple-600" href="/locations">Locations</Link>
-          <Link className="hover:text-purple-600" href="/moves">Moves</Link>
-          <Link className="hover:text-purple-600" href="/generations">Generations</Link>
-        </div>
+        <header className="sticky top-0 z-50 bg-white/80 dark:bg-purple-950/80 backdrop-blur border-b border-purple-200 dark:border-purple-800">
+          <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <h1 className="text-4xl font-bold text-purple-900 dark:text-purple-100">
+              PokéBase
+            </h1>
+
+            <nav className="flex gap-6 text-lg font-medium">
+              <Link className="hover:text-purple-600" href="/pokemon">Pokémon</Link>
+              <Link className="hover:text-purple-600" href="/locations">Locations</Link>
+              <Link className="hover:text-purple-600" href="/moves">Moves</Link>
+              <Link className="hover:text-purple-600" href="/generations">Generations</Link>
+            </nav>
+          </div>
+        </header>
         {children}
       </body>
     </html>

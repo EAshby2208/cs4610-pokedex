@@ -26,7 +26,7 @@ export default function SearchableList({ items, basePath }: SearchableListProps)
             <input
                 type="text"
                 placeholder="Search..."
-                className="mb-4 w-1/2 rounded-lg border border-gray-300 bg-white p-2 text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+                className="mb-6 w-full rounded-xl border border-purple-300 bg-white p-3 text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 dark:bg-purple-900 dark:border-purple-700"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -34,7 +34,7 @@ export default function SearchableList({ items, basePath }: SearchableListProps)
                 {filteredItems.map((i) => (
                     <li
                         key={i.name}
-                        className="rounded-lg border-2 border-purple-300 bg-purple-100 p-4 text-gray-900 dark:border-purple-500 dark:bg-purple-800 dark:text-white hover:shadow-lg hover:bg-purple-200 dark:hover:bg-purple-700 transition-all flex items-center justify-center text-center">
+                        className="flex items-center justify-center rounded-2xl border border-purple-300 bg-white dark:bg-purple-900 p-6 text-center font-medium shadow-sm hover:shadow-md hover:border-purple-400 transition-all">
                         <Link href={`${basePath}/${i.name}`} className="hover:underline">
                             {formatName(i.name)}
                         </Link>

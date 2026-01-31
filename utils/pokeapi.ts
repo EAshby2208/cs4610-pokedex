@@ -18,8 +18,8 @@ export type PokemonDetails = {
     name: string;
     id: number;
     sprites: {
-        front_default: string;
-        front_shiny: string;
+        front_default: string | null;
+        front_shiny: string | null;
     };
     stats: {
         base_stat: number;
