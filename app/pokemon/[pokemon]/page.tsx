@@ -1,10 +1,13 @@
 // app/pokemon/[pokemon]/page.tsx
 import Image from "next/image";
 import Link from "next/link";
-import { fetchPokemonDetails } from "@/utils/pokeapi";
+import { fetchPokemonDetails, NamedAPIList, NamedAPIResource } from "@/utils/pokeapi";
 import BackButton from "@/app/_components/back_button";
 import SearchableList from "@/app/_components/searchable_list";
 
+type LocationAreaEncounter = {
+  location_area: NamedAPIResource;
+}
 type Props = {
   params: Promise< {pokemon: string}>;
 }
@@ -14,12 +17,12 @@ export default async function PokemonPage(props: Props) {
   const {pokemon} = await props.params;
   const data = await fetchPokemonDetails(pokemon);
   // fetch encounter data (location areas) from data.location_area_encounters
-  const encounters = await fetch(data.location_area_encounters).then(res => res.json());
+  const encounters = await fetch(data.location_area_encounters).then(res => res.json()) as LocationAreaEncounter[];
   // convert encounters (location-areas) to locations (location names)
   const locations = await Promise.all(
-    encounters.map(async (enc: any) => {
+    encounters.map(async (enc) => {
       const res = await fetch(enc.location_area.url);
-      const area = await res.json();
+      const area = await res.json() as { location: NamedAPIResource };
       return area.location;
     })
   );
@@ -74,7 +77,7 @@ export default async function PokemonPage(props: Props) {
         {locations.length === 0 ? (
           <p className="text-purple-600 dark:text-purple-400 italic">No known locations</p>
         ) : (
-          <SearchableList items={locations.map((loc: any) => ({ name: formatLocationName(loc.name), url: loc.url }))} basePath="/locations"/>
+          <SearchableList items={locations.map((loc) => ({ name: formatLocationName(loc.name), url: loc.url }))} basePath="/locations"/>
         )}
         <h2 className="text-2xl font-semibold mt-6 mb-4">Moves</h2>
         {/* list moves and if select move, redirect to moves/{move} page */}
