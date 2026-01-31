@@ -60,9 +60,10 @@ export type MoveDetails = {
     power: number | null;
     accuracy: number | null;
     pp: number | null;
-    type: NamedAPIResource;
-    damage_class: NamedAPIResource;
     learned_by_pokemon: NamedAPIResource[];
+    flavor_text_entries: {
+        flavor_text: string;
+    }[];
 };
 
 export type GenerationList = NamedAPIList;
