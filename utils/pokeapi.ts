@@ -63,6 +63,8 @@ export type MoveDetails = {
     learned_by_pokemon: NamedAPIResource[];
     flavor_text_entries: {
         flavor_text: string;
+        language: NamedAPIResource;
+        version_group: NamedAPIResource;
     }[];
 };
 

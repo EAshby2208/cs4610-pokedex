@@ -9,6 +9,12 @@ type SearchableListProps = {
     basePath: string;
 };
 
+function formatName(name: string) {
+    return name.split("-").map(word =>
+        word === "mt" ? "Mt." : word.charAt(0).toUpperCase() + word.slice(1)
+    ).join(" ");
+};
+
 export default function SearchableList({ items, basePath }: SearchableListProps) {
     const [searchTerm, setSearchTerm] = useState("");
     const filteredItems = items.filter((i) =>
@@ -24,13 +30,13 @@ export default function SearchableList({ items, basePath }: SearchableListProps)
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <ul className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            <ul className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 auto-rows-fr">
                 {filteredItems.map((i) => (
                     <li
                         key={i.name}
-                        className="rounded-lg border-2 border-purple-300 bg-purple-100 p-4 text-center text-gray-900 dark:border-purple-500 dark:bg-purple-800 dark:text-white hover:shadow-lg hover:bg-purple-200 dark:hover:bg-purple-700 transition-all">
+                        className="rounded-lg border-2 border-purple-300 bg-purple-100 p-4 text-gray-900 dark:border-purple-500 dark:bg-purple-800 dark:text-white hover:shadow-lg hover:bg-purple-200 dark:hover:bg-purple-700 transition-all flex items-center justify-center text-center">
                         <Link href={`${basePath}/${i.name}`} className="hover:underline">
-                            {i.name.charAt(0).toUpperCase() + i.name.slice(1)}
+                            {formatName(i.name)}
                         </Link>
                     </li>
                 ))}

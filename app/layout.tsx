@@ -35,10 +35,10 @@ export default function RootLayout({
         </h1>
         
         <div className="flex flex-row items-center justify-center py-2 gap-8">
-          <Link href="/pokemon">Pokemon</Link>
-          <Link href="/locations">Locations</Link>
-          <Link href="/moves">Moves</Link>
-          <Link href="/generations">Generations</Link>
+          <Link className="hover:text-purple-600" href="/pokemon">Pokemon</Link>
+          <Link className="hover:text-purple-600" href="/locations">Locations</Link>
+          <Link className="hover:text-purple-600" href="/moves">Moves</Link>
+          <Link className="hover:text-purple-600" href="/generations">Generations</Link>
         </div>
         {children}
       </body>

@@ -18,13 +18,13 @@ export default async function LocationPage(props: Props) {
         <h1 className="text-3xl font-bold mb-4 capitalize">
             {data.name.replace('-', ' ')}
         </h1>
-        <p><strong>Region:</strong> {data.region?.name ?? 'Unknown'}</p>
+        <p className="capitalize"><strong>Region:</strong> {data.region?.name ?? 'Unknown'}</p>
         <h2 className="text-2xl font-semibold mt-6 mb-4">Areas</h2>
         <ul className="mt-2">
             {data.areas.map((area) => (
                 <li key={area.name} className="capitalize">
                     <Link href={`/locations/areas/${area.name}`} className="text-blue-600 hover:underline">
-                        {area.name.replace('-', ' ')}
+                        {area.name.replaceAll('-', ' ')}
                     </Link>
                 </li>
             ))}
